@@ -28,6 +28,6 @@ public:
 			if (max < m_height * length)
 				max = m_height * length;
 		}
-		return max;
+		return max; 
 	}
 };
