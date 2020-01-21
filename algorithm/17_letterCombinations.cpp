@@ -17,6 +17,7 @@ public:
 			ns.push_back(number[digits[i] - 50]);
 		}
 		fun(ns, result, s, 0);
+        delete s;
 		return result;
 	}
 
