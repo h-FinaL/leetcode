@@ -17,7 +17,7 @@ public:
 		ListNode* swapNode1;
 		ListNode* swapNode2;
 		ListNode* node = &result;
-		while (node != NULL)
+		while (1)
 		{
 			if (node->next != NULL) 
 				swapNode1 = node->next;
