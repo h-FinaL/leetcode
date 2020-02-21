@@ -7,7 +7,7 @@ class Solution {
 public:
 	vector<int> searchRange(vector<int>& nums, int target) {
 		vector<int> result{ -1, -1 };
-		if (nums.size() == 0)
+		if (nums.empty())
 			return result;
 		int left = 0;
 		int right = nums.size() - 1;
