@@ -1,9 +1,44 @@
 #include <iostream>
 
+/*
+5. 最长回文子串
+给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+*/
+
 using namespace std;
 
 class Solution {
 public:
+	//第二次实现
+	string longestPalindrome2(string s) {
+		if (s.empty())
+			return "";
+		int max_len = 0;
+		int max_p = 0;
+		for (int i = 0; i < s.size(); i++)
+		{
+			for (int j = 0; j < 2; j++)
+			{
+				int right = i + j;
+				int left = i - 1;
+				int len = j;
+				while (right < s.size() && left >= 0 && s[right] == s[left])
+				{
+					right++;
+					left--;
+					len += 2;
+				}
+				if (len > max_len)
+				{
+					max_len = len;
+					max_p = i;
+				}
+			}
+		}
+
+		return s.substr(max_p - max_len / 2, max_len);
+	}
+	//第一次实现
 	string longestPalindrome(string s) {
 		const char* str = s.c_str();
 		int len = s.length();
