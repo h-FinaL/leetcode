@@ -2,6 +2,12 @@
 #include <string>
 #include <vector>
 
+/*
+28. 实现 strStr()
+给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。
+如果不存在，则返回  -1。
+*/
+
 using namespace std;
 
 class Solution {
@@ -47,6 +53,45 @@ public:
 
 		if (needleTag >= needle.size())
 			return haystackTag - needle.size();
+		return -1;
+	}
+
+	//第二次完成
+	int strStr(string haystack, string needle) {
+		if (needle.empty()) return 0;
+		if (haystack.size() < needle.size()) return -1;
+
+		vector<int> v(needle.size(), 0);
+		for (int i = 1; i < needle.size(); i++)
+		{
+			int len = v[i - 1];
+			while (len > 0 && needle[len] != needle[i])
+				len = v[len - 1];
+			if (needle[len] == needle[i])
+				len++;
+			v[i] = len;
+		}
+
+		int haystack_i = 0;
+		int needle_i = 0;
+		int diff_len = haystack.size() - needle.size();
+		while (haystack_i <= diff_len + needle_i && needle_i < needle.size())
+		{
+			if (needle[needle_i] == haystack[haystack_i])
+			{
+				haystack_i++;
+				needle_i++;
+			}
+			else
+			{
+				if (needle_i == 0)
+					haystack_i++;
+				else
+					needle_i = v[needle_i - 1];
+			}
+		}
+		if (needle_i >= needle.size())
+			return haystack_i - needle_i;
 		return -1;
 	}
 };
