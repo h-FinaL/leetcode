@@ -21,7 +21,7 @@ public:
         for (auto c : t)
         {
             if (letter[c - 'a'] == 0)
-                res = c - 'a'];
+                res = c - 'a';
             else
                 letter[c - 'a']--;
         }
